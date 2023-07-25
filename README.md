@@ -237,6 +237,100 @@
         4)delete after an element
 
 #    LinkedList declaration from scratch in python
+      class node:
+        def __init__(self,data=None):
+          self.data=data
+          self.next=None
+      
+      class linked:
+        def __init__(self):
+          self.head=None
+      
+        def show(self):
+          node=self.head
+          while node is not None:
+           print(node.data,sep=' ')
+           node=node.next
+      
+        def add_begin(self,data):
+          new_node=node(data)
+          new_node.next=self.head
+          self.head=new_node
+          
+        def add_end(self,data):
+          new_node=node(data)
+          #if the linked list is empty 
+          if self.head is None:
+              self.head=new_node
+          #if linked list is not empty
+          else:
+              n=self.head
+              while n.next is not None: 
+                  n=n.next
+              n.next=new_node
+              
+        def add_after(self,data,x):
+            new_node=node(data)
+            n=self.head
+            while n is not None:
+                if n.data==x:
+                    break
+                n=n.next
+            #if search element is not found in the linked list
+            if n is None:
+                print("node not found")
+                return 0
+            #if found 
+            temp=n.next
+            n.next=new_node
+            new_node.next=temp
+            
+            
+        def add_before(self,data,x):
+            new_node=node(data)
+            #if linked list is empty
+            if self.head is None:
+                print("empty")
+                return
+            #if the first element is the search element
+            if self.head.data==x:
+                new_node.next=self.head
+                self.head=new_node
+                return
+            #else
+            n=self.head
+            while n.next is not None:
+                if n.next.data==x:
+                    break
+                n=n.next
+            #if element is not found
+            if n.next is None:
+                print("not found")
+                return
+            new_node.next=n.next
+            n.next=new_node
+            
+        def delete_begin(self):
+            if self.head is None:
+                print("empty")
+                return
+            
+            self.head=self.head.next
+            
+        def delete_end(self):
+            n=self.head
+            if n is None:
+                print("empty")
+                return
+            elif self.head.next==None:
+                self.head=None
+            else: 
+             while n.next.next is not None:
+                n=n.next
+             n.next=None
+
+
+# Breaking the code 
 
 #    Creating Node class
       class node:
