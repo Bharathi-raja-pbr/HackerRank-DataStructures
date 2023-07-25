@@ -15,21 +15,344 @@
         In an array, arr, of size ,N each memory location has some unique index, i (where 0<=i<len(arr), that can be referenced as 
         arr[i]  or ai.
 
- # initialisation
-         --> Empty array
-         A=[]
+ # Initialisation
+#         --> Empty array
+               A=[]
         
-         --> Array with null values of length n
+#         --> Array with null values of length n
          A=[0]*n
         
          can be done for any values.
         
-        --> Initialise array with input from user in single line
+ #       --> Initialise array with input from user in single line
          A=list(map(int,input().rstrip().split()))
         
          to get an integer array rstrip-to remove spaces following ; split-tosplit the input in single line based on separator
         
-         --> Iniatialise array in a range
+ #        --> Iniatialise array in a range
          A=[x for x in range(start,stop)] # List comprehension
- 
- 
+
+#         --> 2-D array:
+         A=[[] for i in range(3)] 
+
+# Add elements to array
+
+       --> Add at the end
+       arr=[1,2,3]
+       arr.append(4)
+       print(arr)
+       o/p: [1,2,3,4]
+      
+       --> Insert at a specific index
+       arr.insert(1,5)
+       print(arr)
+       o/p: [1,5,2,3,4]
+
+# Reverse of an array
+      
+        arr=[1,2,3]
+        arr[::-1] 
+        o/p=[3,2,1]
+
+ # Accessing elements:
+      arr=[1,2,3]
+      arr[0]=1
+      arr[1]=2
+      arr[2]=3
+
+#      Negative indexing
+      arr[-1]=3
+      arr[-2]=2
+      arr[-3]=1
+
+# Functions on array
+
+# len()
+       Returns the length of the array
+       arr=[1,2,3]
+       print(len(arr))
+       o/p: 3
+
+# sum()
+        Returns the sum of the array
+        print(sum(arr))
+        o/p: 6
+
+# index()
+        Returns the index of element if found. Else returns -1
+        print(arr.index(2))
+        o/p:1
+        print(arr.index(4))
+        o/p:-1
+
+# Rotating the array:
+
+#       --> Left Rotation
+
+      A left rotation operation on an array of size N shifts each of the array's elements 1 unit to the left. Given an integer,D ,
+      rotate the array that many steps left and return the result.
+      Method1:
+      def rotateLeft(d, arr):
+          # Write your code here
+          val=[]
+          n=len(arr)
+          d=d%n
+          
+          for i in range(0,n):
+              val.append(arr[(i+d)%n])
+          return val
+      Method2:
+      def rotate(self, nums: List[int], k: int) -> None:
+              temp = []
+              k = len(nums) - k  # Calculate the left rotation steps
+              if k >= len(nums):
+                  k = k % len(nums)
+              temp = nums[:k]
+              nums[:len(nums)-k] = nums[k:]
+              nums[len(nums)-k:] = temp
+
+#        --> Right Rotation
+
+      A right rotation operation on an array of size N shifts each of the array's elements 1 unit to the right. Given an integer,D ,
+      rotate the array that many steps right and return the result.
+      
+            Method1:
+            def rotateRight(d, arr):
+                # Write your code here
+                val=[]
+                n=len(arr)
+                d=d%n
+                
+                for i in range(0,n):
+                    val.append(arr[(n-d+i)%n])
+                return val
+
+          Method2:
+          def rotate(self, nums: List[int], k: int) -> None:
+              temp= []
+              if k >= len(nums):
+                  k = k % len(nums)
+              temp = nums[-k:]
+              print(nums[-k:])
+              print(nums[:-k])
+              nums[k:] = nums[:-k]
+              nums[:k] = temp
+
+# Remove Duplicates 
+
+    Allows only one occurence of elements
+    Approach: Move unique elements to the left and return the first half with unique elements
+    
+     def removeDuplicates(self, nums: List[int]) -> int:
+            '''if len(nums) == 0:
+                return 0   # use in case if constraint on len(nums) starts from 0'''
+
+            i = 1
+            for j in range(1, len(nums)):
+                if nums[j] != nums[j-1]:
+                    nums[i] = nums[j]
+                    i += 1
+
+            return nums[:i]
+
+    Allows K repeatation of elements 
+
+    def removeDuplicates(self, nums: List[int], limit: int) -> int:
+        if len(nums) <= limit:
+            return len(nums)
+
+        i = limit
+        while i < len(nums):
+            duplicate = True
+            for j in range(1, limit + 1):
+                if nums[i] != nums[i - j]:
+                    duplicate = False
+                    break
+
+            if duplicate:
+                nums.pop(i)
+            else:
+                i += 1
+
+        return nums
+
+# Merge Arrays
+
+      list1,list2 can be combined using
+      
+      --> using extend()
+      list1.extend(list2)
+      
+      --> using + operator
+      list1+list2
+
+# Sort Arrays
+
+      -->Ascending order
+      arr=[1,2,3]
+      arr.sort()
+      
+      -->Descending order
+      arr.sort(reverse=True)
+
+
+# LINKED LIST
+
+      A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations.
+      It has two components:
+      1)Data
+      2)Next - pointer to next data
+
+      Structure:
+                    -------------           -------------
+          HEAD---> | DATA | NEXT | ---->   | DATA | NEXT | --->TAIL
+                    -------------           -------------
+
+# Advantages of Linked list:
+      Dynamic Data Structure
+      No Memory Wastage
+      Implementation
+      Faster Insertion and Deletion Operation
+      Memory Usage is Efficient
+      Random Access
+      Reverse Traversal
+
+# Operations on linked list
+       1)Insert
+       2)Delete
+       3)Traversal
+
+#  --> INSERT:
+
+        1)insert at beginning
+        2)insert at end
+        3)insert before an element
+        4)insert after an element
+        
+#  --> DELETE:
+
+        1)delete at beginning
+        2)delete at end
+        3)delete before an element
+        4)delete after an element
+
+#    LinkedList declaration from scratch in python
+
+#    Creating Node class
+      class node:
+        def __init__(self,data=None):
+          self.data=data
+          self.next=None
+#    Creating Linked List class  
+      class linked:
+        def __init__(self):
+          self.head=None
+#      Print elements
+        def show(self):
+          node=self.head
+          while node is not None:
+           print(node.data,sep=' ')
+           node=node.next
+  #    Insert elements
+  #    Insert @ Beginning 
+        def add_begin(self,data):
+          new_node=node(data)
+          new_node.next=self.head
+          self.head=new_node
+  #    Insert @  End      
+        def add_end(self,data):
+          new_node=node(data)
+          #if the linked list is empty 
+          if self.head is None:
+              self.head=new_node
+          #if linked list is not empty
+          else:
+              n=self.head
+              while n.next is not None: 
+                  n=n.next
+              n.next=new_node
+  #    Insert @   After a given element       
+        def add_after(self,data,x):
+            new_node=node(data)
+            n=self.head
+            while n is not None:
+                if n.data==x:
+                    break
+                n=n.next
+            #if search element is not found in the linked list
+            if n is None:
+                print("node not found")
+                return 0
+            #if found 
+            temp=n.next
+            n.next=new_node
+            new_node.next=temp
+            
+  #    Insert @  Before a given element     
+        def add_before(self,data,x):
+            new_node=node(data)
+            #if linked list is empty
+            if self.head is None:
+                print("empty")
+                return
+            #if the first element is the search element
+            if self.head.data==x:
+                new_node.next=self.head
+                self.head=new_node
+                return
+            #else
+            n=self.head
+            while n.next is not None:
+                if n.next.data==x:
+                    break
+                n=n.next
+            #if element is not found
+            if n.next is None:
+                print("not found")
+                return
+            new_node.next=n.next
+            n.next=new_node
+#        Delete elements  
+#        Delete @  Beginning
+        def delete_begin(self):
+            if self.head is None:
+                print("empty")
+                return
+            
+            self.head=self.head.next
+#        Delete @    End       
+        def delete_end(self):
+            n=self.head
+            if n is None:
+                print("empty")
+                return
+            elif self.head.next==None:
+                self.head=None
+            else: 
+             while n.next.next is not None:
+                n=n.next
+             n.next=None
+                
+            
+          
+      ll=linked()
+      ll.add_begin(10)
+      ll.add_begin(20)
+      ll.show()
+      ll2=linked()
+      ll3=linked()
+      ll2.add_end(10)
+      ll2.add_end(20)
+      ll2.show()
+      print("*****")
+      ll2.add_before(100,10)
+      #ll2.add_after(35,10)
+      ll2.show()
+      print('******')
+      ll3.delete_begin()
+      ll3.show()
+      print('*****')
+      ll3.delete_end()
+      
+      ll3.show()
+
