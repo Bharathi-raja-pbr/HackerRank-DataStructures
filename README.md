@@ -426,27 +426,5 @@
              while n.next.next is not None:
                 n=n.next
              n.next=None
-                
-            
-          
-      ll=linked()
-      ll.add_begin(10)
-      ll.add_begin(20)
-      ll.show()
-      ll2=linked()
-      ll3=linked()
-      ll2.add_end(10)
-      ll2.add_end(20)
-      ll2.show()
-      print("*****")
-      ll2.add_before(100,10)
-      #ll2.add_after(35,10)
-      ll2.show()
-      print('******')
-      ll3.delete_begin()
-      ll3.show()
-      print('*****')
-      ll3.delete_end()
-      
-      ll3.show()
+
 
