@@ -406,6 +406,24 @@
                 return
             new_node.next=n.next
             n.next=new_node
+
+#       Insert at a specified Position
+            def insertNodeAtPosition(llist, data, position):
+                # Write your code here
+                node=SinglyLinkedListNode(data)
+                if position == 0:
+                    
+                    node.next=llist
+                    llist=node
+                n=llist
+                while position>1:
+                    n=n.next
+                    position-=1
+                node.next=n.next
+                n.next=node
+                
+                return llist
+      
 #        Delete elements  
 #        Delete @  Beginning
         def delete_begin(self):
@@ -426,5 +444,37 @@
              while n.next.next is not None:
                 n=n.next
              n.next=None
+
+#         Delete a given element
+
+          def delete_element(self,x):
+              if self.head is None:
+                  print("linked list is empty")
+              if self.head.data==x:
+                  self.head=self.head.next
+                  return
+              n=self.head
+              while n.next is not None:
+                  if n.next.data==x:
+                      break
+                  n=n.next
+              if n.next is None:
+                  print("element not found")
+              else:
+                  n.next=n.next.next
+            
+#         Reverse a Linled List
+
+            def reverse(self):
+                    prev=None
+                    cur=self.head
+                    nxt=None
+                    
+                    while cur is not None:
+                        nxt=cur.next
+                        cur.next=prev
+                        prev=cur
+                        cur=nxt
+                    self.head=prev
 
 
