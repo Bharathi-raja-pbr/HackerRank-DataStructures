@@ -462,6 +462,20 @@
                   print("element not found")
               else:
                   n.next=n.next.next
+
+
+#         Delete a element at given position
+
+            def deleteNode(llist, position):
+                # Write your code here
+                if position==0:
+                    llist=llist.next
+                    return llist
+                n=llist
+                while position>1:
+                    n=n.next
+                    position-=1
+                n.next=n.next.next
             
 #         Reverse a Linled List
 
