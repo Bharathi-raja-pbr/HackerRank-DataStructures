@@ -198,7 +198,14 @@
 
 # LINKED LIST
 
-      A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations.
+#            Types:
+                  1)Singly linked list
+                  2)Doubly linked list
+                  3)Circular linked list
+
+# Singly Linked List
+
+      A Singly linked list is a linear data structure, in which the elements are not stored at contiguous memory locations.
       It has two components:
       1)Data
       2)Next - pointer to next data
@@ -477,7 +484,7 @@
                     position-=1
                 n.next=n.next.next
             
-#         Reverse a Linled List
+#         Reverse a Linked List
 
             def reverse(self):
                     prev=None
@@ -490,5 +497,141 @@
                         prev=cur
                         cur=nxt
                     self.head=prev
+
+# Doubly Linked List
+
+      A Doubly linked list is a linear data structure, in which the elements are not stored at contiguous memory locations.
+            It has three components:
+            1)Data
+            2)Next - pointer to next data
+            3)Prev - pointer to previous data
+      
+            Structure:
+                        ---------------------            -------------------
+                None<---| PREV | DATA | NEXT |   ---->   |PREV| DATA | NEXT | --->None
+                        ---------------------    <----   -------------------
+                               (HEAD)                         (TAIL)
+
+#  Code from scratch
+      class Node:
+        def __init__(self,data):
+          self.data=data
+          self.nref=None
+          self.pref=None
+      
+      class DLL:
+        def __init__(self):
+            self.head=None
+# print from head to tail
+        def show_forward(self):
+          if self.head==None:
+            print("empty")
+            return
+          n=self.head
+          while n!=None:
+            print(n.data,end=' ')
+            n=n.nref
+          print('\n--------')
+# print from tail to head
+        def show_reverse(self):
+          if self.head==None:
+            print("empty")
+            return
+          n=self.head
+          while n.nref!=None:
+            n=n.nref
+          while n!=None:
+            print(n.data,end=' ')
+            n=n.pref
+          print('\n--------')
+# Insert at Beginning
+        def insert_begin(self,data):
+          new_node=Node(data)
+          if self.head==None:
+            self.head=new_node
+            return
+          new_node.nref=self.head
+          self.head.pref=new_node
+          self.head=new_node
+# Insert at End
+        def insert_end(self,data):
+          new_node=Node(data)
+          if self.head==None:
+            self.head=new_node
+            return
+          n=self.head
+          while n.nref!=None:
+            n=n.nref
+          new_node.pref=n
+          n.nref=new_node
+# Insert before a given element
+        def insert_before(self,data,value):
+          # if list is empty
+          if self.head==None:
+            print("empty list")
+            return
+          new_node=Node(data)
+          # if head.data is the value given
+          if self.head.data==value:
+            new_node.nref=self.head
+            self.head.pref=new_node
+            self.head=new_node
+            return
+          #else
+          n=self.head
+          while n.nref!=None:
+            if n.nref.data== value:
+               break
+            n=n.nref
+          #the loop breaks in case the element is not found in the list 
+          if n.nref==None:
+            print("element not found")
+          else:
+            #print(n.nref.data)
+            new_node.nref=n.nref
+            n.nref=new_node
+            new_node.pref=n
+# Insert after a given element
+        def insert_after(self,data,value):
+          #if list is empty
+           if self.head==None:
+            print("list empty")
+            return
+      
+           new_node=Node(data)
+           #if head.data is the value given
+           if self.head.data==value:
+             n=self.head.nref
+             new_node.nref=n
+             n.pref=new_node
+             new_node.pref=self.head
+             self.head.nref=new_node
+             return
+           
+           #else
+           n=self.head
+           while n!=None:
+            if n.data==value:
+              break
+            n=n.nref
+           if n==None:
+            print("element not found")
+           else:
+            new_node.nref=n.nref
+            new_node.pref=n
+            n.nref=new_node
+      
+      
+      ll=DLL()
+      ll1=DLL()
+      ll.insert_begin(20)
+      ll.insert_begin(10)
+      ll.insert_end(30)
+      ll.show_forward()
+      #ll1.show_reverse()
+      ll.show_reverse()
+      ll.insert_before(25,10)
+      ll.insert_after(100,30)
+      ll.show_forward()
 
 
